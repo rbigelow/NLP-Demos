@@ -28,7 +28,7 @@ def generate(prompt, temperature=1.0, top_k=50, max_new_tokens=60):
 # Example usage for a classroom
 # -----------------------------
 if __name__ == "__main__":
-    prompt = "Explain how neural networks learn in simple terms."
+    prompt = "Tell me a joke."
 
     print("\n=== Low Temperature (0.2) — Deterministic ===")
     print(generate(prompt, temperature=0.2, top_k=50))
@@ -44,3 +44,6 @@ if __name__ == "__main__":
 
     print("\n=== Top‑k = 100 (More freedom) ===")
     print(generate(prompt, temperature=1.0, top_k=100))
+
+    print("\n=== Top‑k = 150 (Even more freedom) ===")
+    print(generate(prompt, temperature=1.9, top_k=150))

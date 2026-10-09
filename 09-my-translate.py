@@ -2,19 +2,7 @@ from google.cloud import translate_v2
 from google.oauth2 import service_account
 import os
 
-def translate_text(text, target_language='es', source_language='en'):
-    """
-    Translate text using Google Translate API.
-    
-    Args:
-        text (str): Text to translate
-        target_language (str): Target language code (default: 'es' for Spanish)
-        source_language (str): Source language code (default: 'en' for English)
-    
-    Returns:
-        str: Translated text
-    """
-    # Initialize the translation client with explicit credentials
+def translate_text(text, target_language='en-US', source_language='en-CA'):
     credentials = service_account.Credentials.from_service_account_file(
         os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', '.creds/google.json')
     )
@@ -31,10 +19,10 @@ def translate_text(text, target_language='es', source_language='en'):
 
 def main():
     # Example usage
-    text_to_translate = "Hello, how are you today?"
+    text_to_translate = "The colour of the sky, I want to enroll in the programme, and I love my neighbour's dog."
     
     # Translate to Spanish
-    translated = translate_text(text_to_translate, target_language='es')
+    translated = translate_text(text_to_translate)
     print(f"Original: {text_to_translate}")
     print(f"Translated (ES): {translated}")
     

@@ -6,12 +6,12 @@ from bs4 import BeautifulSoup
 
 # Load a small English NER model
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_trf")
 except OSError as e:
     raise SystemExit(
-        "Missing spaCy model 'en_core_web_sm'.\n"
+        "Missing spaCy model 'en_core_web_trf'.\n"
         "Install it with:\n"
-        "  python -m spacy download en_core_web_sm"
+        "  python -m spacy download en_core_web_trf"
     ) from e
 
 def run_ner(text):
@@ -48,16 +48,15 @@ if __name__ == "__main__":
         raise SystemExit(1)
     
     # Extract text from HTML
-    try:
-        soup = BeautifulSoup(response.content, "html.parser")
-        # Remove script and style elements
-        for script in soup(["script", "style"]):
-            script.decompose()
-        text = soup.get_text(separator="\n")
-        text = "\n".join(line.strip() for line in text.split("\n") if line.strip())
-    except ImportError:
-        print("Error: beautifulsoup4 is required. Install with: pip install beautifulsoup4")
-        raise SystemExit(1)
+ 
+    soup = BeautifulSoup(response.content, "html.parser")
+    # Remove script and style elements
+    for script in soup(["script", "style"]):
+        script.decompose()
+    text = soup.get_text(separator="\n")
+    text = "\n".join(line.strip() for line in text.split("\n") if line.strip())
+
+    print("\n=== Extracted Text ===",text)  # Print the first 500 characters of the extracted text
     
     doc, entities = run_ner(text)
     
@@ -70,4 +69,4 @@ if __name__ == "__main__":
     with open("ner_output.html", "w", encoding="utf-8") as f:
         f.write(html)
     
-    print("\nA highlighted HTML visualization has been saved as ner_output.html")
+    # print("\nA highlighted HTML visualization has been saved as ner_output.html")

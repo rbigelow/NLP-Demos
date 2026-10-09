@@ -38,6 +38,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
 def predict_toxicity(text):
+    print(f"TEXT: {text}")
     inputs = tokenizer(text, return_tensors="pt", truncation=True)
     with torch.no_grad():
         logits = model(**inputs).logits
@@ -49,10 +50,10 @@ def predict_toxicity(text):
 # ---------------------------------------------------------
 examples = {
     "Dialect (AAVE, non-toxic)": 
-        "I'm finna tell you something real quick, this class was fire.",
+        "I am so happy for you.",
     
     "Dialect (AAVE, non-toxic but often misclassified)": 
-        "He be acting wild sometimes but he cool for real.",
+        "I love you.",
     
     "Reclaimed term (non-toxic, identity-affirming)": 
         "My friends and I use that word among ourselves in a positive way.",
@@ -61,10 +62,12 @@ examples = {
         "That exam killed me, but I think I still passed.",
     
     "Negative words but harmless": 
-        "This weather is terrible, I can't stand the cold.",
+        "I want to kill you.",
     
     "Neutral sentence (control)": 
-        "I had a sandwich for lunch today."
+        "You are ugly",
+ "My label": 
+        "I really hate you."
 }
 
 # ---------------------------------------------------------
@@ -86,6 +89,6 @@ print(df.to_string(index=False))
 print("\n=== Potential Misclassifications (Score > 0.5 but text is non-toxic) ===")
 for _, row in df.iterrows():
     if row["Toxicity Score"] > 0.5:
-        print(f"\nCategory: {row['Category']}")
+        # print(f"\nCategory: {row['Category']}")
         print(f"Text: {row['Text']}")
         print(f"Score: {row['Toxicity Score']}")
