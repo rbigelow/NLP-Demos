@@ -30,7 +30,7 @@ def generate_answers(text):
     return answer
 
 body = '''
-The college was established during the formation of Ontario's college system in 1967. Colleges of Applied Arts and Technology were established on May 21, 1965, when the Ontario system of public colleges was created. 
+ Colleges of Applied Arts and Technology were established on May 21, 1965, when the Ontario system of public colleges was created. 
 '''
 result =generate_answers(body)
 print ("print:",result)

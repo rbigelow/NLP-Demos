@@ -19,10 +19,10 @@ def translate_text(text, target_language='en-US', source_language='en-CA'):
 
 def main():
     # Example usage
-    text_to_translate = "The colour of the sky, I want to enroll in the programme, and I love my neighbour's dog."
+    text_to_translate = "The colour of the sky, I want to enroll in the program, and I love my neighbour's dog."
     
     # Translate to Spanish
-    translated = translate_text(text_to_translate)
+    translated = translate_text(text_to_translate, target_language='es')
     print(f"Original: {text_to_translate}")
     print(f"Translated (ES): {translated}")
     

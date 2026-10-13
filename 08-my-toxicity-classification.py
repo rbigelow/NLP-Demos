@@ -65,7 +65,7 @@ examples = {
         "I want to kill you.",
     
     "Neutral sentence (control)": 
-        "You are ugly",
+        "The sky is blue and the grass is green.",
  "My label": 
         "I really hate you."
 }

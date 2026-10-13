@@ -653,11 +653,11 @@ xlnet_summary = ''.join(model(body, min_length=100, max_length=600))
 GPT2_model = TransformerSummarizer(transformer_type="GPT2",transformer_model_key="gpt2-medium")
 gpt2_summary = ''.join(GPT2_model(body, min_length=100, max_length=300))
 
-# print("BERT----------------------------------------")
-# print(bert_summary)
+print("BERT----------------------------------------")
+print(bert_summary)
 
-# print("XLNET----------------------------------------")
-# print(xlnet_summary)
+print("XLNET----------------------------------------")
+print(xlnet_summary)
 
 print("GPT2----------------------------------------")
 print(gpt2_summary)

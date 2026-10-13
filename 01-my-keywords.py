@@ -40,7 +40,7 @@ Drivers should avoid that area, they said.
 count = CountVectorizer(ngram_range=n_gram_range, stop_words=stop_words).fit([text])
 candidates = count.get_feature_names_out()
 
-# print ("candidates: ", candidates)
+print ("candidates: ", candidates)
 
 model = SentenceTransformer('distilbert-base-nli-mean-tokens')
 doc_embedding = model.encode([text])
